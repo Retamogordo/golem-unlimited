@@ -101,7 +101,7 @@ impl EthAccount {
 
     /// signs given message with self secret key
     pub fn sign(&self, msg: &Message) -> Result<Signature> {
-        Ok(self.secret.sign(msg)?)
+        self.secret.sign(msg).map_err(|err| err.into())
     }
 
     /// verifies signature for given message and self public key
